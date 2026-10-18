@@ -58,7 +58,6 @@ GameObject:
   - component: {fileID: 6991165564237551993}
   - component: {fileID: 4618067313681219183}
   - component: {fileID: 6478310624464750116}
-  - component: {fileID: 1072316570907466056}
   m_Layer: 0
   m_Name: water_glass
   m_TagString: Untagged
@@ -159,30 +158,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.101753905, y: 0.25728497, z: 0.101753905}
   m_Center: {x: 0.0000000018626451, y: 0.12639247, z: -0.000000009313226}
---- !u!54 &1072316570907466056
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6797345614801586634}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0

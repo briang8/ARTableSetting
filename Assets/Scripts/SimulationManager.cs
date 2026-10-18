@@ -12,6 +12,7 @@ public class SimulationManager : MonoBehaviour
     private int placedCount;
     private int score;
     private bool running;
+    private readonly ISessionRepository repository = new JsonSessionRepository();
 
     public int Score => score;
     public int Mistakes => mistakes;
@@ -91,7 +92,7 @@ public class SimulationManager : MonoBehaviour
             mistakes = mistakes,
             result = score >= level.passMark ? "Passed" : "Failed"
         };
-        // Saving through the session repository is added in the persistence step.
+        repository.Save(data);
         GameEvents.RaiseLevelCompleted(data);
     }
 

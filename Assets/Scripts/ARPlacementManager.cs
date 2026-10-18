@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -24,12 +25,46 @@ public class ARPlacementManager : MonoBehaviour
     private ARAnchor tableAnchor;
     private readonly List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
-    private void Start()
+    public event Action BeginPressed;
+    public Transform TableTransform => table != null ? table.transform : null;
+
+    private void Awake()
     {
         confirmButton.onClick.AddListener(PlaceTable);
         repositionButton.onClick.AddListener(RepositionTable);
-        beginButton.onClick.AddListener(OnBeginPressed);
+        beginButton.onClick.AddListener(() => BeginPressed?.Invoke());
+    }
+
+    // Starts a fresh setup: no table, planes visible, scanning again.
+    public void BeginSetup()
+    {
+        enabled = true;
+        ClearTable();
+        planeManager.enabled = true;
+        planeManager.SetTrackablesActive(true);
         SetStep(Step.Scanning);
+    }
+
+    // Ends setup but keeps the table and its anchor in place.
+    public void EndSetup()
+    {
+        planeManager.SetTrackablesActive(false);
+        planeManager.enabled = false;
+        enabled = false;
+    }
+
+    public void ClearTable()
+    {
+        if (tableAnchor != null)
+        {
+            Destroy(tableAnchor);
+            tableAnchor = null;
+        }
+        if (table != null)
+        {
+            Destroy(table);
+            table = null;
+        }
     }
 
     private void Update()
@@ -89,11 +124,6 @@ public class ARPlacementManager : MonoBehaviour
             tableAnchor = null;
         }
         SetStep(Step.Previewing);
-    }
-
-    private void OnBeginPressed()
-    {
-        Debug.Log("Begin pressed. The simulation starts here later.");
     }
 
     private void SetStep(Step newStep)

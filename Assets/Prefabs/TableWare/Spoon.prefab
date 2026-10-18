@@ -59,7 +59,6 @@ GameObject:
   - component: {fileID: 4681568001757527322}
   - component: {fileID: 1714424956440773788}
   - component: {fileID: 1758454016738417127}
-  - component: {fileID: 5541096258511307732}
   m_Layer: 0
   m_Name: spoon
   m_TagString: Untagged
@@ -160,30 +159,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.055595465, y: 0.015671428, z: 0.25580215}
   m_Center: {x: -0.000000059604645, y: 0.00021874205, z: -0.027541127}
---- !u!54 &5541096258511307732
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6035619380027338537}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0

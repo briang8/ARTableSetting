@@ -73,6 +73,7 @@ public abstract class TablewareItem : MonoBehaviour
         moved = false;
         pickupPosition = transform.position;
         Selected = this;
+        GameEvents.RaiseItemPickedUp(this);
     }
 
     public void Drop()
