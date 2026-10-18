@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 710768fa57ba6384697f4d7340191658, type: 3}
+  m_Name: BasicLevel
+  m_EditorClassIdentifier: Assembly-CSharp::TableSettingLevel
+  levelName: Basic
+  timeLimit: 120
+  passMark: 70
+  scoringType: Basic
+  items:
+  - itemType: Plate
+    addressKey: Plate
+    slotId: Plate
+  - itemType: Fork
+    addressKey: Fork
+    slotId: Fork
+  - itemType: Knife
+    addressKey: Knife
+    slotId: Knife
+  - itemType: Glass
+    addressKey: Glass
+    slotId: Glass
