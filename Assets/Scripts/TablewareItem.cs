@@ -24,10 +24,31 @@ public abstract class TablewareItem : MonoBehaviour
     public abstract bool IsOrientationValid();
     public abstract string GetHint();
 
+    private void Awake()
+    {
+        SitOnGround();
+    }
+
+    // Lifts the model so its lowest point rests on this object's origin (the tabletop),
+    // whatever the original model's pivot was.
+    private void SitOnGround()
+    {
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
+        if (renderers.Length == 0) return;
+
+        Bounds bounds = renderers[0].bounds;
+        for (int i = 1; i < renderers.Length; i++) bounds.Encapsulate(renderers[i].bounds);
+
+        float lift = transform.position.y - bounds.min.y;
+        foreach (Transform child in transform)
+            child.position += Vector3.up * lift;
+    }
+
     // Called by the factory when the item is created or reused.
     public void Setup(PlacementSlot slot, Vector3 trayPos, Quaternion trayRot)
     {
         targetSlot = slot;
+        targetSlot.SetMarkerVisible(true);
         trayPosition = trayPos;
         trayRotation = trayRot;
         placedCorrectly = false;
@@ -103,6 +124,7 @@ public abstract class TablewareItem : MonoBehaviour
     {
         transform.position = targetSlot.transform.position;
         placedCorrectly = true;
+        targetSlot.SetMarkerVisible(false);
         if (Selected == this) Selected = null;
     }
 
