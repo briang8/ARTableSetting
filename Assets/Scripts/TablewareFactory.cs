@@ -4,9 +4,12 @@ using UnityEngine;
 public class TablewareFactory : MonoBehaviour
 {
     [SerializeField] private AssetLoader assetLoader;
-    [SerializeField] private float trayStartX = -0.4f;
-    [SerializeField] private float trayStepX = 0.16f;
-    [SerializeField] private float trayZ = -0.2f;
+
+    [Header("Tray grid (table space, metres)")]
+    [SerializeField] private int columns = 3;
+    [SerializeField] private float columnSpacing = 0.3f;
+    [SerializeField] private float firstRowZ = -0.33f;
+    [SerializeField] private float rowSpacing = 0.25f;
 
     private readonly Dictionary<string, ObjectPool<TablewareItem>> pools = new Dictionary<string, ObjectPool<TablewareItem>>();
     private readonly Dictionary<TablewareItem, ObjectPool<TablewareItem>> owners = new Dictionary<TablewareItem, ObjectPool<TablewareItem>>();
@@ -16,6 +19,9 @@ public class TablewareFactory : MonoBehaviour
     {
         ReleaseAllItems();
         PlacementSlot[] slots = table.GetComponentsInChildren<PlacementSlot>();
+
+        // Hide every guide first. Each item that is created shows the guide for its own slot.
+        foreach (PlacementSlot slot in slots) slot.SetMarkerVisible(false);
 
         for (int i = 0; i < level.items.Count; i++)
         {
@@ -35,8 +41,12 @@ public class TablewareFactory : MonoBehaviour
             TablewareItem item = pool.Get();
             item.transform.SetParent(table, true);
 
-            // Tray row along the near edge of the table, at tabletop height.
-            Vector3 local = new Vector3(trayStartX + i * trayStepX, slot.transform.localPosition.y, trayZ);
+            // Items are laid out in a grid on the front part of the table, centred left to right.
+            int column = i % columns;
+            int row = i / columns;
+            float x = (column - (columns - 1) / 2f) * columnSpacing;
+            float z = firstRowZ - row * rowSpacing;
+            Vector3 local = new Vector3(x, slot.transform.localPosition.y, z);
             Vector3 trayPos = table.TransformPoint(local);
 
             // Cutlery starts turned 90 degrees so the trainee has to rotate it once.

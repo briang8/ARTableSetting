@@ -47,6 +47,7 @@ public class GameController : MonoBehaviour
         ui.RotatePressed += HandleRotatePressed;
         ui.RestartPressed += HandleRestartPressed;
         ui.MenuPressed += HandleMenuPressed;
+        ui.QuitPressed += HandleQuitPressed;
         arManager.BeginPressed += HandleBeginPressed;
         GameEvents.OnLevelCompleted += HandleLevelCompleted;
     }
@@ -59,6 +60,7 @@ public class GameController : MonoBehaviour
         ui.RotatePressed -= HandleRotatePressed;
         ui.RestartPressed -= HandleRestartPressed;
         ui.MenuPressed -= HandleMenuPressed;
+        ui.QuitPressed -= HandleQuitPressed;
         arManager.BeginPressed -= HandleBeginPressed;
         GameEvents.OnLevelCompleted -= HandleLevelCompleted;
     }
@@ -77,6 +79,14 @@ public class GameController : MonoBehaviour
 
     private void HandleBackPressed() => ui.ShowScreen(GameScreen.Start);
 
+    private void HandleQuitPressed()
+    {
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #else
+        Application.Quit();
+        #endif
+    }
     private void HandleRotatePressed()
     {
         if (TablewareItem.Selected != null) TablewareItem.Selected.Rotate();

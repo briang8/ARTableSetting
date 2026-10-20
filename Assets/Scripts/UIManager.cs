@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Button basicButton;
     [SerializeField] private Button standardButton;
     [SerializeField] private Button historyButton;
+    [SerializeField] private Button quitButton;
     [SerializeField] private TMP_Text selectedLevelText;
 
     [Header("HUD")]
@@ -49,6 +50,7 @@ public class UIManager : MonoBehaviour
     public event Action RotatePressed;
     public event Action RestartPressed;
     public event Action MenuPressed;
+    public event Action QuitPressed;
 
     public int SelectedLevelIndex { get; private set; }
 
@@ -63,6 +65,7 @@ public class UIManager : MonoBehaviour
         startButton.onClick.AddListener(() => StartPressed?.Invoke());
         historyButton.onClick.AddListener(() => HistoryPressed?.Invoke());
         backButton.onClick.AddListener(() => BackPressed?.Invoke());
+        if (quitButton != null) quitButton.onClick.AddListener(() => QuitPressed?.Invoke());
         rotateButton.onClick.AddListener(() => RotatePressed?.Invoke());
         restartButton.onClick.AddListener(() => RestartPressed?.Invoke());
         menuButton.onClick.AddListener(() => MenuPressed?.Invoke());
@@ -174,12 +177,12 @@ public class UIManager : MonoBehaviour
 
     private void HandleScoreChanged(int score)
     {
-        scoreText.text = "Score: " + score;
+        scoreText.text = score.ToString();
     }
 
     private void HandleTimerChanged(float timeLeft)
     {
-        timerText.text = "Time: " + Mathf.CeilToInt(timeLeft) + " s";
+        timerText.text = Mathf.CeilToInt(timeLeft).ToString();
     }
 
     private void ShowHint(string message)
@@ -191,7 +194,7 @@ public class UIManager : MonoBehaviour
     private void RefreshCounts()
     {
         levelText.text = "Level: " + hudLevelName;
-        itemsText.text = "Placed: " + placedCount + " / " + totalItems;
-        mistakesText.text = "Mistakes: " + mistakeCount;
+        itemsText.text = placedCount + " / " + totalItems;
+        mistakesText.text = mistakeCount.ToString();
     }
 }
