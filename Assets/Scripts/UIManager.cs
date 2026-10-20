@@ -140,7 +140,7 @@ public class UIManager : MonoBehaviour
         {
             SessionData s = sessions[i];
             text += s.sessionDate + "   " + s.levelName + "   " + s.score + " pts   "
-                  + s.timeTaken.ToString("0") + " s   " + s.mistakes + " mistakes   " + s.result + "\n";
+                  + s.timeTaken.ToString("0") + " s   " + s.mistakes + (s.mistakes == 1 ? " mistake   " : " mistakes   ") + s.result + "\n";
         }
         historyText.text = text;
     }
