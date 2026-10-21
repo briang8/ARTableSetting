@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
+using System.Collections;
 
 public class GameController : MonoBehaviour
 {
@@ -69,7 +70,14 @@ public class GameController : MonoBehaviour
     private void HandleBeginPressed() => machine.ChangeState(simulationState);
     private void HandleRestartPressed() => machine.ChangeState(simulationState);
     private void HandleMenuPressed() => machine.ChangeState(startState);
-    private void HandleLevelCompleted(SessionData data) => machine.ChangeState(completionState);
+    private void HandleLevelCompleted(SessionData data) => StartCoroutine(ShowCompletionAfterDelay());
+
+    // Short pause so the last placement stays visible before the results appear.
+    private IEnumerator ShowCompletionAfterDelay()
+    {
+    yield return new WaitForSeconds(2.5f);
+    machine.ChangeState(completionState);
+    }
 
     private void HandleHistoryPressed()
     {
