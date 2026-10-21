@@ -35,7 +35,7 @@ The History screen lists the last five sessions, and Quit on the main menu close
 - AR plane detection and table placement with a confirm step
 - Two levels with different item sets, time limits, pass marks and scoring
 - Drag and drop placement with position and rotation checks
-- Colour guides on the table that show where each item belongs and disappear once the item is placed
+- Colour guides(Slightly see-through) on the table that show where to place all items but not literally and disappear once the item is placed
 - Hints that explain where each item belongs
 - Live HUD with score, timer, items placed and mistakes
 - Sound effects for pick up, correct, incorrect, start and finish
