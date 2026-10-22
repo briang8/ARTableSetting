@@ -2,7 +2,6 @@
 
 An Android augmented reality app that teaches correct table setting. The user places a virtual table on a real floor, then drags tableware from the front of the table to its correct position. Placement, orientation, time and mistakes are scored, and recent sessions are saved on the device.
 
-Repository: https://github.com/briang8/ARTableSetting.git
 
 ## Screenshots
 
